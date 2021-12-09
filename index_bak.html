@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Hello Electron!</title>
+      <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    </head>
+    <body>
+      <h1>Hello Electron!</h1>
+      <!-- <button id="btn" class="btn btn-success btn-sm">开启服务器</button> -->
+      <button id="btn2" class="btn btn-warning btn-sm">TEST</button>
+
+      <!-- <script src="./server.js"></script> -->
+      <script>
+          window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js')
+          require('./node_modules/bootstrap/dist/js/bootstrap.min.js')
+
+          $('#btn2').click(() => {
+              $.get('http://127.0.0.1:3000/test', (data, status) => {
+                  console.log('status=', status, ', data=', data)
+              })
+          })
+      </script>
+    </body>
+  </html>

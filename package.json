@@ -1,0 +1,39 @@
+{
+  "name": "siralim-ultimate-nodejs-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "build": {
+    "appId": "com.vtbmeta.siralim-ultimate",
+    "directories": {
+      "output": "build"
+    },
+    "extraFiles": [
+      "siralim-ultimate-sqlite.db"
+    ],
+    "win": {
+      "target": [
+        "zip"
+      ]
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
+    "electron-rebuild": "^3.2.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.6.1",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "sqlite3": "^5.0.2",
+    "popper.js": "^1.16.1"
+  }
+}

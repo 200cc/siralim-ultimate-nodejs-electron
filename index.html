@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Hello Electron!</title>
+      <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="trait-tab" data-toggle="tab" href="#trait" role="tab" aria-controls="trait" aria-selected="true">TRAIT</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="spell-tab" data-toggle="tab" href="#spell" role="tab" aria-controls="spell" aria-selected="false">SPELL</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="god-tab" data-toggle="tab" href="#god" role="tab" aria-controls="god" aria-selected="false">GOD</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="realm-tab" data-toggle="tab" href="#realm" role="tab" aria-controls="realm" aria-selected="false">REALM</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="card-tab" data-toggle="tab" href="#card" role="tab" aria-controls="card" aria-selected="false">CARD</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="relic-tab" data-toggle="tab" href="#relic" role="tab" aria-controls="relic" aria-selected="false">RELIC</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="trait" role="tabpanel" aria-labelledby="trait-tab">                    
+                    <form id="formTrait">
+                        <input name="table" value="trait" type="hidden"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>class</label>
+                                <select name="class" class="form-control">
+                                    <option value="">ALL</option>
+                                    <option value="Death">Death</option>
+                                    <option value="Sorcery">Sorcery</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Chaos">Chaos</option>
+                                    <option value="Life">Life</option>
+                                    <option value="Rodian Master">Rodian Master</option>
+                                    <option value="Nether Boss">Nether Boss</option>
+                                    <option value="Backer">Backer</option>
+                                    <option value="Pandemonium">Pandemonium</option>
+                                    <option value="Nether Room">Nether Room</option>
+                                    <option value="Boss">Boss</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>trait</label>
+                                <input name="trait" type="text" class="form-control" placeholder="trait">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>creature</label>
+                                <input name="creature" type="text" class="form-control" placeholder="creature">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>family</label>
+                                <input name="family" type="text" class="form-control" placeholder="family">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>material</label>
+                                <input name="material" type="text" class="form-control" placeholder="material">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input name="description" type="text" class="form-control" placeholder="description">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>&nbsp;</label>
+                                <button id="btnTrait" type="button" class="btn btn-sm btn-primary form-control">QUERY</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="display" style="width:100%" id="tableTrait">
+                        <thead>
+                            <tr>
+                                <th scope="col">class</th>
+                                <th scope="col">family</th>
+                                <th scope="col">creature</th>
+                                <th scope="col">trait</th>
+                                <th scope="col">material</th>
+                                <th scope="col">description</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tab-pane" id="spell" role="tabpanel" aria-labelledby="spell-tab">
+                    <form id="formSpell">
+                        <input name="table" value="spell" type="hidden"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>class</label>
+                                <select name="class" class="form-control">
+                                    <option value="">ALL</option>
+                                    <option value="Chaos">Chaos</option>
+                                    <option value="Death">Death</option>
+                                    <option value="Life">Life</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Sorcery">Sorcery</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>spell</label>
+                                <input name="spell" type="text" class="form-control" placeholder="spell">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input name="description" type="text" class="form-control" placeholder="description">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>&nbsp;</label>
+                                <button id="btnSpell" type="button" class="btn btn-sm btn-primary form-control">QUERY</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="display" style="width:100%" id="tableSpell">
+                        <thead>
+                            <th scope="col">class</th>
+                            <th scope="col">spell</th>
+                            <th scope="col">charges</th>
+                            <th scope="col">description</th>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tab-pane" id="god" role="tabpanel" aria-labelledby="god-tab">
+                    <form id="formGod">
+                        <input name="table" value="god" type="hidden"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label>god</label>
+                                <select name="god" class="form-control">
+                                    <option value="">ALL</option>
+                                    <option value="Aeolian">Aeolian</option>
+                                    <option value="Apocranox">Apocranox</option>
+                                    <option value="Aurum">Aurum</option>
+                                    <option value="Azural">Azural</option>
+                                    <option value="Erebyss">Erebyss</option>
+                                    <option value="Friden">Friden</option>
+                                    <option value="Gonfurian">Gonfurian</option>
+                                    <option value="Lister">Lister</option>
+                                    <option value="Meraxis">Meraxis</option>
+                                    <option value="Mortem">Mortem</option>
+                                    <option value="Perdition">Perdition</option>
+                                    <option value="Regalis">Regalis</option>
+                                    <option value="Surathli">Surathli</option>
+                                    <option value="T'mere M'rgo">T'mere M'rgo</option>
+                                    <option value="Tartarith">Tartarith</option>
+                                    <option value="Tenebris">Tenebris</option>
+                                    <option value="Torun">Torun</option>
+                                    <option value="Venedon">Venedon</option>
+                                    <option value="Vertaag">Vertaag</option>
+                                    <option value="Vertraag">Vertraag</option>
+                                    <option value="Vulcanar">Vulcanar</option>
+                                    <option value="Yseros">Yseros</option>
+                                    <option value="Zonte">Zonte</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>description</label>
+                                <select name="type" class="form-control">
+                                    <option value="">ALL</option>
+                                    <option value="Mana">Mana</option>
+                                    <option value="Inscription">Inscription</option>
+                                    <option value="Trait">Trait</option>
+                                    <option value="Crafting Material">Crafting Material</option>
+                                    <option value="Heart">Heart</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>item</label>
+                                <input name="item" type="text" class="form-control" placeholder="item">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input name="description" type="text" class="form-control" placeholder="description">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>&nbsp;</label>
+                                <button id="btnGod" type="button" class="btn btn-sm btn-primary form-control">QUERY</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="display" style="width:100%" id="tableGod">
+                        <thead>
+                            <th scope="col">god</th>
+                            <th scope="col">tier</th>
+                            <th scope="col">item</th>
+                            <th scope="col">price</th>
+                            <th scope="col">type</th>
+                            <th scope="col">description</th>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tab-pane" id="realm" role="tabpanel" aria-labelledby="realm-tab">
+                    <form id="formRealm">
+                        <input name="table" value="realm" type="hidden"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input name="realm" type="text" class="form-control" placeholder="realm">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input name="god" type="text" class="form-control" placeholder="god">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>&nbsp;</label>
+                                <button id="btnRealm" type="button" class="btn btn-sm btn-primary form-control">QUERY</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="display" style="width:100%" id="tableRealm">
+                        <thead>
+                            <th scope="col">realm</th>
+                            <th scope="col">god</th>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tab-pane" id="card" role="tabpanel" aria-labelledby="card-tab">
+                    <form id="formCard">
+                        <input name="table" value="card" type="hidden"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input name="family" type="text" class="form-control" placeholder="family">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>&nbsp;</label>
+                                <button id="btnCard" type="button" class="btn btn-sm btn-primary form-control">QUERY</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="display" style="width:100%" id="tableCard">
+                        <thead>
+                            <th scope="col">family</th>
+                            <th scope="col">tier</th>
+                            <th scope="col">first</th>
+                            <th scope="col">second</th>
+                            <th scope="col">third</th>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tab-pane" id="relic" role="tabpanel" aria-labelledby="relic-tab">
+                    <form id="formRelic">
+                        <input name="table" value="relic" type="hidden"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label>stat</label>
+                                <select name="stat" class="form-control">
+                                    <option value="">ALL</option>
+                                    <option value="Attack">Attack</option>
+                                    <option value="Intelligence">Intelligence</option>
+                                    <option value="Defense">Defense</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Speed">Speed</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>relic</label>
+                                <select name="relic" class="form-control">
+                                    <option value="">ALL</option>
+                                    <option value="5740-NG, Impenetrable Plate of 4080">5740-NG, Impenetrable Plate of 4080</option>
+                                    <option value="ASSKICKER, SPARE BOOT OF TORUN">ASSKICKER, SPARE BOOT OF TORUN</option>
+                                    <option value="Amalgam, Warped Mirror of T'mere M'rgo">Amalgam, Warped Mirror of T'mere M'rgo</option>
+                                    <option value="Arbiter, Holy Shield of Surathli">Arbiter, Holy Shield of Surathli</option>
+                                    <option value="Blazefury, Flaming Soul of Vulcanar">Blazefury, Flaming Soul of Vulcanar</option>
+                                    <option value="Bloodseeker, Hungering Dagger of Mortem">Bloodseeker, Hungering Dagger of Mortem</option>
+                                    <option value="Brambleskin, Spiked Carapace of Genaros">Brambleskin, Spiked Carapace of Genaros</option>
+                                    <option value="Dusk & Dawn, Dual Pistols of Venedon">Dusk & Dawn, Dual Pistols of Venedon</option>
+                                    <option value="Fable, Mythical Stone of Shallan">Fable, Mythical Stone of Shallan</option>
+                                    <option value="Fatum & Fortuna, Loaded Dice of Reclusa">Fatum & Fortuna, Loaded Dice of Reclusa</option>
+                                    <option value="Ferro, Great Axe of Gonfurian">Ferro, Great Axe of Gonfurian</option>
+                                    <option value="Fleshripper, Bloodied Cleaver of Tartarith">Fleshripper, Bloodied Cleaver of Tartarith</option>
+                                    <option value="Hanti & Jihi, Sister Swords of Perdition">Hanti & Jihi, Sister Swords of Perdition</option>
+                                    <option value="Lamora, Gilded Scimitar of Friden">Lamora, Gilded Scimitar of Friden</option>
+                                    <option value="Materium, Shifting Gem of Aurum">Materium, Shifting Gem of Aurum</option>
+                                    <option value="Moonfire & Sunfury, Mystic Orbs of Vertraag">Moonfire & Sunfury, Mystic Orbs of Vertraag</option>
+                                    <option value="Mutatias, War Scissors of Alexandria">Mutatias, War Scissors of Alexandria</option>
+                                    <option value="Petra & Aes, War Drums of Meraxis">Petra & Aes, War Drums of Meraxis</option>
+                                    <option value="Prime & Ventus, Claws of Aeolian">Prime & Ventus, Claws of Aeolian</option>
+                                    <option value="Ribcracker, Otherworldly Rod of Ariamaki">Ribcracker, Otherworldly Rod of Ariamaki</option>
+                                    <option value="Ripplevein, Imbued Brush of Muse">Ripplevein, Imbued Brush of Muse</option>
+                                    <option value="Rosenthorne, Dark Blade of Erebyss">Rosenthorne, Dark Blade of Erebyss</option>
+                                    <option value="Salus, Jade Guardian of Lister">Salus, Jade Guardian of Lister</option>
+                                    <option value="Starwrath, Great Spear of Yseros">Starwrath, Great Spear of Yseros</option>
+                                    <option value="Temptation, Bladed Whip of Regalis">Temptation, Bladed Whip of Regalis</option>
+                                    <option value="Thousand Needles, Honed Bow of Apocranox">Thousand Needles, Honed Bow of Apocranox</option>
+                                    <option value="Triumvir, Arcane Sceptre of Zonte">Triumvir, Arcane Sceptre of Zonte</option>
+                                    <option value="Vitreous, Crystal Eye of Anneltha">Vitreous, Crystal Eye of Anneltha</option>
+                                    <option value="Void Essence, Dark Heart of Caliban">Void Essence, Dark Heart of Caliban</option>
+                                    <option value="Whisper, Shadow Staff of Tenebris">Whisper, Shadow Staff of Tenebris</option>
+                                    <option value="Wintermaul, Great Hammer of Azural">Wintermaul, Great Hammer of Azural</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>description</label>
+                                <input name="description" type="text" class="form-control" placeholder="description">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>&nbsp;</label>
+                                <button id="btnRelic" type="button" class="btn btn-sm btn-primary form-control">QUERY</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="display" style="width:100%" id="tableRelic">
+                        <thead>
+                            <th scope="col">stat</th>
+                            <th scope="col">relic</th>
+                            <th scope="col">rank</th>
+                            <th scope="col">description</th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
+            require('./node_modules/bootstrap/dist/js/bootstrap.min.js');
+        </script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script>
+            var ctx = 'http://127.0.0.1:37201';
+
+            $('#btnTrait').on('click', () => {
+                genTable('Trait', [{data: 'class'}, {data: 'family'}, {data: 'creature'}, {data: 'trait'}, {data: 'material'}, {data: 'description'}])
+            })
+            $('#btnSpell').on('click', () => {
+                genTable('Spell', [{data: 'class'}, {data: 'spell'}, {data: 'charges'}, {data: 'description'}])
+            })
+            $('#btnGod').on('click', () => {
+                genTable('God', [{data: 'god'}, {data: 'tier'}, {data: 'item'}, {data: 'price'}, {data: 'type'}, {data: 'description'}])
+            })
+            $('#btnRealm').on('click', () => {
+                genTable('Realm', [{data: 'realm'}, {data: 'god'}])
+            })
+            $('#btnCard').on('click', () => {
+                genTable('Card', [{data: 'family'}, {data: 'tier'}, {data: 'first'}, {data: 'second'}, {data: 'third'}])
+            })
+            $('#btnRelic').on('click', () => {
+                genTable('Relic', [{data: 'stat'}, {data: 'relic'}, {data: 'rank'}, {data: 'description'}])
+            })
+
+            function genTable(catagory, columns) {
+                
+                $.post(ctx + '/table', $('#form' + catagory).serializeArray(), (data, status) => {
+                    $("#table" + catagory).DataTable().destroy()
+                    $('#table' + catagory).DataTable({ 
+                        data: data,
+                        columns: columns
+                    })
+                })
+            }
+
+        </script>
+    </body>
+   
+  </html>
