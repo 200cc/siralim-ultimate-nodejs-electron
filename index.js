@@ -7,7 +7,7 @@ function createWindow() {
         width: 1600, 
         height: 900,
         resizable: true,
-        transparent: true,
+        // transparent: true,  // 最大化无效
         webPreferences: { // 解决页面启动时报错: require is not defined
             nodeIntegration: true,
             enableRemoteModule:true,
